@@ -1,64 +1,64 @@
 import { useState, useEffect } from 'react';
-import {
-  useLoginMutation,
-  useGetCurrentUserQuery,
-  type User,
-} from '../lib/graphql/generated/types';
+import type { User } from '../lib/graphql/generated/types';
 
 export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
 
-  const [loginMutation, { loading: loginLoading, error: loginError }] =
-    useLoginMutation();
-
-  const {
-    data: currentUserData,
-    loading: currentUserLoading,
-    error: currentUserError,
-  } = useGetCurrentUserQuery({
-    skip: !isAuthenticated,
-  });
+  const [loginLoading, setLoginLoading] = useState<boolean>(false);
+  const [loginError, setLoginError] = useState<Error | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
-    if (token) {
+    const userData = localStorage.getItem('userData');
+    if (token && userData) {
       setIsAuthenticated(true);
+      setUser(JSON.parse(userData));
     }
   }, []);
 
-  useEffect(() => {
-    if (currentUserData?.me) {
-      setUser(currentUserData.me);
-    }
-  }, [currentUserData]);
-
   const login = async (email: string, password: string) => {
-    try {
-      const { data } = await loginMutation({
-        variables: { email, password },
-      });
+    setLoginLoading(true);
+    setLoginError(null);
 
-      if (data?.login?.token) {
-        localStorage.setItem('authToken', data.login.token);
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      if (email === 'tester@parkapp.pl' && password === 'testPassword') {
+        const mockToken = 'mock_jwt_token_' + Date.now();
+        const mockUser: User = {
+          id: '1',
+          email: 'tester@parkapp.pl',
+          name: 'Test User',
+        };
+
+        localStorage.setItem('authToken', mockToken);
+        localStorage.setItem('userData', JSON.stringify(mockUser));
         setIsAuthenticated(true);
-        setUser(data.login.user);
+        setUser(mockUser);
+        setLoginLoading(false);
         return { success: true };
       }
 
-      return { success: false, error: 'Invalid response from server' };
+      setLoginLoading(false);
+      const error = new Error('Invalid email or password');
+      setLoginError(error);
+      return { success: false, error: 'Invalid email or password' };
     } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Login failed',
-      };
+      setLoginLoading(false);
+      const errorMessage =
+        error instanceof Error ? error.message : 'Login failed';
+      setLoginError(new Error(errorMessage));
+      return { success: false, error: errorMessage };
     }
   };
 
   const logout = () => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('userData');
     setIsAuthenticated(false);
     setUser(null);
+    setLoginError(null);
   };
 
   return {
@@ -68,7 +68,5 @@ export const useAuth = () => {
     logout,
     loginLoading,
     loginError,
-    currentUserLoading,
-    currentUserError,
   };
 };
