@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('tester@parkapp.pl');
@@ -10,11 +9,7 @@ export const LoginForm = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const result = await login(email, password);
-
-    if (result?.success) {
-      window.location.replace('/dashboard');
-    }
+    await login(email, password);
   };
 
   return (
@@ -62,16 +57,15 @@ export const LoginForm = () => {
                 placeholder="Password"
               />
               <button
+                id="password-toggle"
                 type="button"
                 className="absolute inset-y-0 right-0 pr-3 flex items-center"
                 onClick={() => setShowPassword(!showPassword)}
-                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                name={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? (
-                  <EyeOff className="w-5 h-5 text-gray-400 hover:text-gray-600" />
-                ) : (
-                  <Eye className="w-5 h-5 text-gray-400 hover:text-gray-600" />
-                )}
+                <span className="text-gray-400 hover:text-gray-600 text-sm">
+                  {showPassword ? 'Hide' : 'Show'}
+                </span>
               </button>
             </div>
           </div>
