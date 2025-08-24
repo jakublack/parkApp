@@ -5,7 +5,7 @@ export const LoginForm = () => {
   const [email, setEmail] = useState('tester@parkapp.pl');
   const [password, setPassword] = useState('testPassword');
   const [showPassword, setShowPassword] = useState(false);
-  const { login, loginLoading, loginError } = useAuth();
+  const { login, loginLoading } = useAuth();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -69,22 +69,6 @@ export const LoginForm = () => {
               </button>
             </div>
           </div>
-
-          {loginError && (
-            <div className="rounded-md bg-red-50 p-4">
-              <div className="flex">
-                <div className="ml-3">
-                  <h3 className="text-sm font-medium text-red-800">
-                    Login Error
-                  </h3>
-                  <div className="mt-2 text-sm text-red-700">
-                    <p>{loginError.message}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
           <div>
             <button
               type="submit"

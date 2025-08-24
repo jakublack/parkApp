@@ -12,8 +12,7 @@ dist
 dist-ssr
 *.local
 
-# Generated files
-src/lib/graphql/generated/
+
 
 # Editor directories and files
 .vscode/*
