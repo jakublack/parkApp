@@ -1,69 +1,186 @@
-# React + TypeScript + Vite
+# ParkApp - Pilot Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern React application for managing parking gates and barriers with a sleek UI design.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**[View Live Application](https://wondrous-malabi-65d24b.netlify.app/login)**
 
-## Expanding the ESLint configuration
+## 📋 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **🔐 Authentication System** - Secure login with mock authentication
+- **🎛️ Pilot Dashboard** - Interactive interface for controlling gates and barriers
+- **📱 Responsive Design** - Optimized for desktop and mobile devices
+- **🎨 Modern UI** - Built with Tailwind CSS following Figma design
+- **⚡ Fast Performance** - Built with Vite for optimal loading times
+- **🧪 Comprehensive Testing** - Unit tests with Vitest and React Testing Library
+- **🚨 Error Handling** - Global error boundary with toast notifications
+- **📊 GraphQL Integration** - Apollo Client with code generation
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Frontend**: React 18 + TypeScript
+- **Styling**: Tailwind CSS 3.4
+- **Build Tool**: Vite 4.3
+- **GraphQL**: Apollo Client 3.14
+- **Testing**: Vitest + React Testing Library
+- **Icons**: Lucide React
+- **Code Quality**: ESLint + Prettier
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🏗️ Architecture
+
+```
+src/
+├── components/           # React components
+│   ├── AppRouter/       # Application routing
+│   ├── LoginForm/       # Authentication form
+│   ├── PilotDashboard/  # Main dashboard
+│   ├── Header/          # Dashboard header
+│   ├── PilotController/ # Pilot control interface
+│   ├── AppNavigation/   # Bottom navigation
+│   ├── ErrorBoundary/   # Error handling
+│   └── Toast/           # Notifications
+├── contexts/            # React contexts
+│   └── ErrorContext.tsx # Global error management
+├── hooks/               # Custom React hooks
+│   └── useAuth.ts       # Authentication logic
+├── lib/                 # External libraries setup
+│   ├── apollo-client.ts # GraphQL client config
+│   └── graphql/         # GraphQL schemas & types
+└── test/                # Test configuration
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Quick Start
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 16+
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd park-app
+
+# Install dependencies
+npm install
+
+# Generate GraphQL types
+npm run codegen
+
+# Start development server
+npm run dev
 ```
+
+### Available Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run test         # Run unit tests
+npm run test:watch   # Run tests in watch mode
+npm run lint         # Run ESLint
+npm run format       # Format code with Prettier
+npm run codegen      # Generate GraphQL types
+```
+
+## 🔑 Authentication
+
+**Login Credentials:**
+
+- **Email**: `tester@parkapp.pl`
+- **Password**: `testPassword`
+
+## 🧪 Testing
+
+The project includes comprehensive unit tests covering:
+
+- **Authentication flow** (useAuth hook)
+- **Login form interactions** (LoginForm component)
+- **Pilot dashboard functionality** (PilotController component)
+
+```bash
+# Run all tests
+npm run test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+## 🎨 UI/UX Design
+
+The application follows a modern design system with:
+
+- **Color Scheme**: Blue (#15215C) primary with yellow (#FFB034) accents
+- **Typography**: Poppins font family
+- **Components**: Rounded corners, subtle shadows, smooth transitions
+- **Responsive**: Mobile-first approach with Tailwind CSS
+
+## 🚨 Error Handling
+
+Comprehensive error handling system:
+
+- **Error Boundary** - Catches React component errors
+- **Global Error Context** - Manages application-wide errors
+- **Toast Notifications** - User-friendly error messages
+- **Network Error Handling** - GraphQL and API error management
+
+## 📱 Responsive Design
+
+Optimized for:
+
+- **Desktop** (1024px+)
+- **Tablet** (768px - 1023px)
+- **Mobile** (320px - 767px)
+
+## 🔧 Development
+
+### Code Style
+
+- **ESLint** - Code linting with React and TypeScript rules
+- **Prettier** - Code formatting
+- **TypeScript** - Strict mode enabled
+- **Conventional Commits** - Commit message format
+
+### Git Workflow
+
+- **Main Branch**: `master`
+- **Commit Style**: Imperative mood with "the" article
+- **Example**: `Add the pilot dashboard component`
+
+## 📦 Build & Deployment
+
+The application is automatically deployed to Netlify:
+
+```bash
+# Production build
+npm run build
+
+# Build includes:
+# 1. GraphQL code generation (prebuild)
+# 2. TypeScript compilation
+# 3. Vite bundling and optimization
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if needed
+5. Run linting and tests
+6. Submit a pull request
+
+## 📄 License
+
+This project is created as a recruitment task.
+
+---
+
+**Built with ❤️ using React + TypeScript + Tailwind CSS**
