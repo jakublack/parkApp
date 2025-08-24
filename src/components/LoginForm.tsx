@@ -10,6 +10,7 @@ export const LoginForm = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     await login(email, password);
+    window.location.replace('/dashboard');
   };
 
   return (

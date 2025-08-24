@@ -22,6 +22,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    // eslint-disable-next-line no-console
     console.error('ErrorBoundary caught an error:', error, errorInfo);
   }
 
@@ -71,7 +72,7 @@ export class ErrorBoundary extends Component<Props, State> {
               </button>
             </div>
 
-            {process.env.NODE_ENV === 'development' && this.state.error && (
+            {import.meta.env.DEV && this.state.error && (
               <details className="mt-4 text-left">
                 <summary className="cursor-pointer text-sm text-gray-500 hover:text-gray-700">
                   Error Details (Development Only)

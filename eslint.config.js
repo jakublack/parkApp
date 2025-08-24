@@ -63,4 +63,21 @@ export default [
       'prefer-const': 'error',
     },
   },
+  {
+    files: ['**/*.test.{js,jsx,ts,tsx}', '**/test/**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        describe: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        vi: 'readonly',
+      },
+    },
+    rules: {
+      'no-console': 'off',
+    },
+  },
 ]
