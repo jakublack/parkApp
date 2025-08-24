@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 
 export const LoginForm = () => {
@@ -61,9 +62,11 @@ export const LoginForm = () => {
                 className="absolute inset-y-0 right-0 pr-3 flex items-center"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                <span className="text-gray-400 hover:text-gray-600 text-sm">
-                  {showPassword ? 'Hide' : 'Show'}
-                </span>
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5 text-gray-400 hover:text-gray-600" />
+                ) : (
+                  <Eye className="w-5 h-5 text-gray-400 hover:text-gray-600" />
+                )}
               </button>
             </div>
           </div>
