@@ -2,10 +2,6 @@
 
 Modern React application for managing parking gates and barriers with a sleek UI design.
 
-## 🚀 Live Demo
-
-**[View Live Application](https://wondrous-malabi-65d24b.netlify.app)**
-
 ## 📋 Features
 
 - **🔐 Authentication System** - Secure login with mock authentication
