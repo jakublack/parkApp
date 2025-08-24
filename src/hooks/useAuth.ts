@@ -1,25 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
-import { LOGIN_MUTATION, GET_CURRENT_USER } from '../lib/graphql/queries';
-import type {
-  LoginVariables,
-  LoginResponse,
-  GetCurrentUserResponse,
-  User,
-} from '../lib/graphql/types';
+import {
+  useLoginMutation,
+  useGetCurrentUserQuery,
+  type User,
+} from '../lib/graphql/generated/types';
 
 export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
 
   const [loginMutation, { loading: loginLoading, error: loginError }] =
-    useMutation<LoginResponse, LoginVariables>(LOGIN_MUTATION);
+    useLoginMutation();
 
   const {
     data: currentUserData,
     loading: currentUserLoading,
     error: currentUserError,
-  } = useQuery<GetCurrentUserResponse>(GET_CURRENT_USER, {
+  } = useGetCurrentUserQuery({
     skip: !isAuthenticated,
   });
 

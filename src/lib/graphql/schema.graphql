@@ -1,0 +1,26 @@
+type User {
+  id: String!
+  email: String!
+  name: String!
+}
+
+type LoginPayload {
+  token: String!
+  user: User!
+}
+
+type Pilot {
+  id: String!
+  name: String!
+  status: String!
+  location: String!
+}
+
+type Query {
+  me: User
+  pilots(limit: Int, offset: Int): [Pilot!]!
+}
+
+type Mutation {
+  login(email: String!, password: String!): LoginPayload
+}
