@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('tester@parkapp.pl');

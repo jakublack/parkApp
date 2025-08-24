@@ -1,0 +1,29 @@
+.header {
+  background: linear-gradient(179.97deg, #ffb034 -6.72%, #fadf99 111.75%),
+    linear-gradient(179.97deg, #ffb034 -6.72%, #fadf99 111.75%);
+  min-height: 280px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  box-shadow: -10px 4px 20px 0px #3030301A;
+
+}
+.section {
+  grid-template-columns: 160px 1fr;
+}
+
+.paginationDot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0px -1px 3px 0px #00000040 inset;
+}
+
+
+.paginationDotActive {
+  background-color: #15215C;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}

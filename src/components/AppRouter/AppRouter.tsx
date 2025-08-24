@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { LoginForm } from './LoginForm';
-import { PilotDashboard } from './PilotDashboard';
-import { ProtectedRoute } from './ProtectedRoute';
-import { useAuth } from '../hooks/useAuth';
+import { LoginForm } from '../LoginForm';
+import { PilotDashboard } from '../PilotDashboard';
+import { ProtectedRoute } from '../ProtectedRoute';
+import { useAuth } from '../../hooks/useAuth';
 
 export const AppRouter = () => {
   const { isAuthenticated } = useAuth();
